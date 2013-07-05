@@ -1,4 +1,4 @@
 jooqstduy
 =========
 
-this is a java application with jooq . 
+this is a java application for jooq study. 
