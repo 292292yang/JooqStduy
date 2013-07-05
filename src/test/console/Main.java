@@ -33,33 +33,33 @@ public class Main {
 			// insert 
 			for (int i = 1; i < 10; i++) {
 				create.insertInto(POSTS, POSTS.ID, POSTS.TITLE, POSTS.BODY,POSTS.TIMESTAMP).
-					   values(new Long(i) , "TITLE " + i, "BODY " + i,new java.sql.Timestamp(System.currentTimeMillis())).execute();
+					   values(new Integer(i) , "TITLE " + i, "BODY " + i,new java.sql.Timestamp(System.currentTimeMillis())).execute();
 			}
 			
 			// select 
 			Result<Record> result = create.select().from(POSTS).fetch();
 			for (Record r : result) {
-				Long id = r.getValue(POSTS.ID);
+				Integer id = r.getValue(POSTS.ID);
 				String title = r.getValue(POSTS.TITLE);
 				String description = r.getValue(POSTS.BODY);
 				System.out.println("ID: " + id + " title: " + title + " desciption: " + description);
 			}
 			
 			// delete
-			create.delete(POSTS).where(POSTS.ID.equal(new Long(9))).execute();
+			create.delete(POSTS).where(POSTS.ID.equal(new Integer(9))).execute();
 			
 			// update
 			create.update(POSTS)
 		      .set(POSTS.TITLE, "===title===")
 		      .set(POSTS.BODY, "===body===")
-		      .where(POSTS.ID.equal(new Long(1)))
+		      .where(POSTS.ID.equal(new Integer(1)))
 		      .execute();
 			
 			// getSQL
 			String sql = create.update(POSTS)
 		      .set(POSTS.TITLE, "===title===")
 		      .set(POSTS.BODY, "===body===")
-		      .where(POSTS.ID.equal(new Long(1)))
+		      .where(POSTS.ID.equal(new Integer(1)))
 		      .getSQL();
 			
 			System.out.println(sql);
